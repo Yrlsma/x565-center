@@ -9,7 +9,7 @@ X565 Center — настольная программа для Windows 11 на �
 экран 1920×1080 144 Гц, Wi‑Fi MediaTek или Intel AX200). Программа работает рядом со штатным Control Center 5.52.49.5, не заменяя его.
 
 Требования — в `docs/SPEC.md`. Оформление — в `docs/DESIGN.md`, исходники макетов — в `docs/mockups/`.
-Код ещё не написан: начни с этапа 1 из `docs/SPEC.md`.
+Этап 1 написан (`src/x565_center`), запуск: `.venv\Scripts\python -m x565_center`. Дальше — этап 2 из `docs/SPEC.md`.
 
 ## Жёсткие ограничения
 

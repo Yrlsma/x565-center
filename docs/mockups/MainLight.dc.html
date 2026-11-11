@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>A · Светлая тема</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+body{margin:0}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 820px; box-sizing: border-box; background: #F3F5F7; color: #14171A; font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap">
+<nav aria-label="Разделы" style="flex: 0 0 220px; box-sizing: border-box; padding: 28px 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 12px 22px">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 12l5-3"></path><circle cx="12" cy="12" r="1.5"></circle></svg>
+<div style="font-weight: 700; font-size: 16px; letter-spacing: 0.2px">X565 Center</div>
+</div>
+<button style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 0; border-radius: 10px; background: #EEF1F4; color: #14171A; font-size: 14px; font-weight: 600; text-align: left">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>Обзор</button>
+<button style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: #56606B; font-size: 14px; font-weight: 500; text-align: left">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg>Питание</button>
+<button style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: #56606B; font-size: 14px; font-weight: 500; text-align: left">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>Экран</button>
+<button style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: #56606B; font-size: 14px; font-weight: 500; text-align: left">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="17" height="10" rx="2"></rect><path d="M22 11v2"></path></svg>Батарея</button>
+<button style="min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: #56606B; font-size: 14px; font-weight: 500; text-align: left">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"></path></svg>Настройки</button>
+</nav>
+<main style="flex: 1 1 520px; min-width: 0; box-sizing: border-box; padding: 28px 32px 36px; display: flex; flex-direction: column; gap: 22px">
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div>
+<h1 style="margin: 0; font-size: 26px; font-weight: 700">Обзор</h1>
+<div style="margin-top: 4px; font-size: 13px; color: #56606B">Ryzen 5 6600H · GeForce RTX · от сети</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<div role="group" aria-label="Тема оформления" style="display: flex; padding: 4px; gap: 4px; border-radius: 12px; background: #FFFFFF">
+<button aria-pressed="false" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border: 0; border-radius: 9px; background: transparent; color: #56606B; font-size: 14px; font-weight: 600"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"></path></svg>Тёмная</button>
+<button aria-pressed="true" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border: 0; border-radius: 9px; background: #D9DEE4; color: #14171A; font-size: 14px; font-weight: 600"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"></path></svg>Светлая</button>
+</div>
+<div role="group" aria-label="Режим работы" style="display: flex; flex-wrap: wrap; padding: 4px; gap: 4px; border-radius: 12px; background: #FFFFFF">
+<button style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 9px; background: transparent; color: #56606B; font-size: 14px; font-weight: 600">Тихий</button>
+<button aria-pressed="true" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 9px; background: {{accent}}; color: #FFFFFF; font-size: 14px; font-weight: 700">Баланс</button>
+<button style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 9px; background: transparent; color: #56606B; font-size: 14px; font-weight: 600">Турбо</button>
+</div>
+</div>
+</header>
+<section aria-label="Показатели" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px">
+<div style="padding: 20px; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; color: #56606B; font-weight: 500">Процессор</div>
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 700; line-height: 1">58°</div>
+<div style="height: 6px; border-radius: 3px; background: #E3E7EC"><div style="width: 34%; height: 6px; border-radius: 3px; background: {{accent}}"></div></div>
+<div style="font-size: 13px; color: #56606B">Загрузка 34%</div>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; color: #56606B; font-weight: 500">Видеокарта</div>
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 700; line-height: 1; color: #A8480A">71°</div>
+<div style="height: 6px; border-radius: 3px; background: #E3E7EC"><div style="width: 82%; height: 6px; border-radius: 3px; background: #A8480A"></div></div>
+<div style="font-size: 13px; color: #56606B">Загрузка 82%</div>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; color: #56606B; font-weight: 500">Вентиляторы</div>
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 700; line-height: 1">3200</div>
+<div style="height: 6px; border-radius: 3px; background: #E3E7EC"><div style="width: 55%; height: 6px; border-radius: 3px; background: {{accent}}"></div></div>
+<div style="font-size: 13px; color: #56606B">об/мин · только чтение</div>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; color: #56606B; font-weight: 500">Батарея</div>
+<div style="font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 700; line-height: 1">86%</div>
+<div style="height: 6px; border-radius: 3px; background: #E3E7EC"><div style="width: 86%; height: 6px; border-radius: 3px; background: {{accent}}"></div></div>
+<div style="font-size: 13px; color: #56606B">Заряжается · износ 4%</div>
+</div>
+</section>
+<section style="display: flex; flex-wrap: wrap; gap: 16px">
+<div style="flex: 2 1 420px; min-width: 0; box-sizing: border-box; padding: 20px; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+<h2 style="margin: 0; font-size: 15px; font-weight: 600">Температура за 10 минут</h2>
+<div style="display: flex; gap: 14px; font-size: 13px; color: #56606B">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 3px; background: {{accent}}"></span>CPU</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 3px; background: #A8480A"></span>GPU</span>
+</div>
+</div>
+<svg role="img" aria-label="График температур процессора и видеокарты" viewBox="0 0 600 180" preserveAspectRatio="none" style="width: 100%; height: 190px">
+<path d="M0 45H600M0 90H600M0 135H600" stroke="#E3E7EC" stroke-width="1"></path>
+<path d="M0 120 C60 118 90 100 140 104 S230 126 280 112 S380 92 430 100 S540 110 600 98" fill="none" stroke="{{accent}}" stroke-width="2.5"></path>
+<path d="M0 96 C50 92 100 70 150 62 S250 58 300 48 S400 60 450 44 S550 50 600 46" fill="none" stroke="#A8480A" stroke-width="2.5"></path>
+</svg>
+</div>
+<div style="flex: 1 1 260px; min-width: 0; box-sizing: border-box; padding: 20px; border-radius: 16px; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0 0 4px; font-size: 15px; font-weight: 600">Быстрые действия</h2>
+<button aria-pressed="true" style="min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border: 1px solid #D9DEE4; border-radius: 12px; background: #EEF1F4; color: #14171A; font-size: 14px; font-weight: 500">Экран 144 Гц<span style="font-size: 13px; font-weight: 700; color: {{accent}}">Вкл</span></button>
+<button aria-pressed="false" style="min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border: 1px solid #D9DEE4; border-radius: 12px; background: #EEF1F4; color: #14171A; font-size: 14px; font-weight: 500">Только встроенная графика<span style="font-size: 13px; font-weight: 700; color: #56606B">Выкл</span></button>
+<button aria-pressed="true" style="min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border: 1px solid #D9DEE4; border-radius: 12px; background: #EEF1F4; color: #14171A; font-size: 14px; font-weight: 500">Wi‑Fi<span style="font-size: 13px; font-weight: 700; color: {{accent}}">Вкл</span></button>
+<button aria-pressed="false" style="min-height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border: 1px solid #D9DEE4; border-radius: 12px; background: #EEF1F4; color: #14171A; font-size: 14px; font-weight: 500">Bluetooth<span style="font-size: 13px; font-weight: 700; color: #56606B">Выкл</span></button>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0B7D72"},"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#0B7D72' };
+}
+}
+</script>
+</body>
+</html>

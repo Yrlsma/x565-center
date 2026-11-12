@@ -347,8 +347,10 @@ class SettingsPage(Page):
         sensors, lay = card("Датчики")
         admin = bool(ctypes.windll.shell32.IsUserAnAdmin())
         text = label(
-            "Программа запущена с правами администратора." if admin else
-            "Программа запущена без прав администратора: температура процессора и обороты вентиляторов недоступны.",
+            "Температура процессора берётся из термозон Windows, видеокарты — из драйвера NVIDIA. " + (
+                "Программа запущена с правами администратора." if admin else
+                "Обороты вентиляторов без прав администратора и библиотеки LibreHardwareMonitor недоступны."
+            ),
             "muted",
         )
         text.setWordWrap(True)

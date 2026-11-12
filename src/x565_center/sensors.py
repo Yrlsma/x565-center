@@ -126,6 +126,85 @@ class _Nvidia:
                 pass
 
 
+class _PdhValue(ctypes.Structure):
+    _fields_ = [("CStatus", wintypes.DWORD), ("doubleValue", ctypes.c_double)]
+
+
+class _PdhItem(ctypes.Structure):
+    _fields_ = [("szName", wintypes.LPWSTR), ("FmtValue", _PdhValue)]
+
+
+class _ThermalZone:
+    """Температура процессора из счётчика Windows «Thermal Zone Information».
+
+    Это показания термозон ACPI, которые Windows читает сама: права администратора
+    и сторонний драйвер не нужны, программа ничего не пишет в EC и ACPI.
+    """
+
+    PDH_FMT_DOUBLE = 0x200
+    PDH_MORE_DATA = 0x800007D2
+
+    def __init__(self) -> None:
+        self.query = wintypes.HANDLE()
+        self.counter = wintypes.HANDLE()
+        self.ok = False
+        try:
+            self._pdh = ctypes.WinDLL("pdh")
+            self._pdh.PdhAddEnglishCounterW.argtypes = [
+                wintypes.HANDLE, wintypes.LPCWSTR, ctypes.c_void_p, ctypes.POINTER(wintypes.HANDLE),
+            ]
+            self._pdh.PdhCollectQueryData.argtypes = [wintypes.HANDLE]
+            self._pdh.PdhCloseQuery.argtypes = [wintypes.HANDLE]
+            self._pdh.PdhGetFormattedCounterArrayW.argtypes = [
+                wintypes.HANDLE, wintypes.DWORD, ctypes.POINTER(wintypes.DWORD),
+                ctypes.POINTER(wintypes.DWORD), ctypes.c_void_p,
+            ]
+            if self._pdh.PdhOpenQueryW(None, None, ctypes.byref(self.query)) != 0:
+                return
+            path = r"\Thermal Zone Information(*)\High Precision Temperature"  # десятые доли кельвина
+            if self._pdh.PdhAddEnglishCounterW(self.query, path, None, ctypes.byref(self.counter)) != 0:
+                self.close()
+                return
+            self.ok = True
+        except (OSError, AttributeError):
+            self.ok = False
+
+    def read(self) -> int | None:
+        """Самая горячая термозона в °C или None."""
+        if not self.ok:
+            return None
+        try:
+            if self._pdh.PdhCollectQueryData(self.query) != 0:
+                return None
+            size, count = wintypes.DWORD(0), wintypes.DWORD(0)
+            status = self._pdh.PdhGetFormattedCounterArrayW(
+                self.counter, self.PDH_FMT_DOUBLE, ctypes.byref(size), ctypes.byref(count), None
+            )
+            if status & 0xFFFFFFFF != self.PDH_MORE_DATA or not size.value:
+                return None
+            buf = ctypes.create_string_buffer(size.value)
+            if self._pdh.PdhGetFormattedCounterArrayW(
+                self.counter, self.PDH_FMT_DOUBLE, ctypes.byref(size), ctypes.byref(count), buf
+            ) != 0:
+                return None
+            items = ctypes.cast(buf, ctypes.POINTER(_PdhItem))
+            temps = []
+            for i in range(count.value):
+                value = items[i].FmtValue
+                celsius = value.doubleValue / 10 - 273.15
+                if value.CStatus in (0, 1) and 0 < celsius < 125:  # отбросить заведомо ложные значения
+                    temps.append(celsius)
+            return round(max(temps)) if temps else None
+        except OSError:
+            return None
+
+    def close(self) -> None:
+        if self.query:
+            self._pdh.PdhCloseQuery(self.query)
+            self.query = wintypes.HANDLE()
+        self.ok = False
+
+
 class _Lhm:
     """Температура процессора и обороты вентиляторов через LibreHardwareMonitorLib.
 
@@ -200,6 +279,7 @@ class SensorWorker(QObject):
         self._timer = None
         self._nvidia = None
         self._lhm = None
+        self._zone = None
         self._loop = None
         self._radio_cls = None
         self._last_radio = 0.0
@@ -208,6 +288,7 @@ class SensorWorker(QObject):
     def start(self) -> None:
         self._nvidia = _Nvidia()
         self._lhm = _Lhm()
+        self._zone = _ThermalZone()
         try:
             from winrt.windows.devices.radios import Radio
 
@@ -230,6 +311,8 @@ class SensorWorker(QObject):
             self._nvidia.close()
         if self._lhm:
             self._lhm.close()
+        if self._zone:
+            self._zone.close()
         if self._loop:
             self._loop.close()
 
@@ -243,6 +326,8 @@ class SensorWorker(QObject):
     def poll(self) -> None:
         gpu_temp, gpu_load = self._nvidia.read()
         cpu_temp, fan = self._lhm.read()
+        if cpu_temp is None:
+            cpu_temp = self._zone.read()
         mem = psutil.virtual_memory()
         battery = read_battery()
         self.snapshot.emit({
